@@ -1,0 +1,14 @@
+<!doctype html>
+<notebook theme="air">
+  <title>test</title>
+  <script id="1" type="text/markdown">
+    # test
+  </script>
+  <script id="2" type="module" pinned="">
+    const x = view(Inputs.range([0, 100], {label: "x", step: 1}));
+    const y = 2;
+  </script>
+  <script id="3" type="module" pinned="">
+    display(x + y)
+  </script>
+</notebook>
