@@ -1,0 +1,34 @@
+```{python}
+import requests
+import pandas as pd
+from io import StringIO
+from itables import show
+
+r = requests.get('https://docs.google.com/spreadsheets/d/e/2PACX-1vSlgMV5lFDlkoOlCsDFBfNAsd8hVmEI42TnvUtEEhl0g0uz5_v3pF4SJM3q8aoddp69fsii054BnRcK/pub?gid=0&single=true&output=csv')
+
+# r.text
+```
+
+```{python}
+
+data = pd.read_csv(StringIO(r.text))
+# ['Date', 'Url', 'Title', 'Quote', 
+# 'Text', 'Category', 'Tags']
+
+show(data)
+```
+
+
+```{ojs}
+data = d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSlgMV5lFDlkoOlCsDFBfNAsd8hVmEI42TnvUtEEhl0g0uz5_v3pF4SJM3q8aoddp69fsii054BnRcK/pub?gid=0&single=true&output=csv")
+
+viewof search = Inputs.text({placeholder: "Search..."})
+
+filtered = data.filter(d => 
+  Object.values(d).some(value => 
+    value.toLowerCase().includes(search.toLowerCase())
+  )
+)
+
+Inputs.table(filtered)
+```
